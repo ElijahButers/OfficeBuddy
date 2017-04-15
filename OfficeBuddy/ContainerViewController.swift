@@ -123,6 +123,9 @@ class ContainerViewController: UIViewController {
         
         var identity = CATransform3DIdentity
         identity.m34 = -1.0/1000
+        
+        let remainingPercent = 1.0 - percent
+        let angle = remainingPercent * CGFloat(-M_PI_2)
     }
   
 }
