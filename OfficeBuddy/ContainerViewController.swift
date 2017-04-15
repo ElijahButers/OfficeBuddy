@@ -116,7 +116,7 @@ class ContainerViewController: UIViewController {
   
   func setToPercent(_ percent: CGFloat) {
     centerViewController.view.frame.origin.x = menuWidth * CGFloat(percent)
-    menuViewController.view.frame.origin.x = menuWidth * CGFloat(percent) - menuWidth
+    menuViewController.view.layer.transform = menuTransformForPercent(percent: percent)
   }
     
     func menuTransformForPercent(percent: CGFloat) -> CATransform3D {
