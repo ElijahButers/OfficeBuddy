@@ -126,6 +126,10 @@ class ContainerViewController: UIViewController {
         
         let remainingPercent = 1.0 - percent
         let angle = remainingPercent * CGFloat(-M_PI_2)
+        let rotationTransform = CATransform3DRotate(identity, angle, 0.0, 1.0, 0.0)
+        let translationTransform = CATransform3DMakeTranslation(menuWidth, 0, 0)
+        
+        return CATransform3DConcat(rotationTransform, translationTransform)
     }
   
 }
