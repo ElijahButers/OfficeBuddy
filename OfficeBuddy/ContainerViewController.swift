@@ -121,6 +121,8 @@ class ContainerViewController: UIViewController {
     
     func menuTransformForPercent(percent: CGFloat) -> CATransform3D {
         
+        var identity = CATransform3DIdentity
+        identity.m34 = -1.0/1000
     }
   
 }
