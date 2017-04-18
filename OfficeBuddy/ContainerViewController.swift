@@ -88,6 +88,8 @@ class ContainerViewController: UIViewController {
     case .ended: fallthrough
     case .cancelled: fallthrough
     case .failed:
+        
+        self.menuViewController.view.layer.shouldRasterize = false
       
       var targetProgress: CGFloat
       if (isOpening) {
