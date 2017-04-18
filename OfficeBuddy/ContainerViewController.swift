@@ -61,7 +61,9 @@ class ContainerViewController: UIViewController {
     view.addSubview(menuViewController.view)
     menuViewController.didMove(toParentViewController: self)
     
+    menuViewController.view.layer.anchorPoint.x = 1.0
     menuViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: view.frame.height)
+    setToPercent(0.0)
     
     let panGesture = UIPanGestureRecognizer(target:self, action:#selector(ContainerViewController.handleGesture(_:)))
     view.addGestureRecognizer(panGesture)
@@ -78,7 +80,8 @@ class ContainerViewController: UIViewController {
     case .began:
       let isOpen = floor(centerViewController.view.frame.origin.x/menuWidth)
       isOpening = isOpen == 1.0 ? false: true
-      
+        menuViewController.view.layer.shouldRasterize = true
+        menuViewController.view.layer.rasterizationScale = UIScreen.main.scale
     case .changed:
       self.setToPercent(isOpening ? progress: (1.0 - progress))
       
@@ -117,6 +120,7 @@ class ContainerViewController: UIViewController {
   func setToPercent(_ percent: CGFloat) {
     centerViewController.view.frame.origin.x = menuWidth * CGFloat(percent)
     menuViewController.view.layer.transform = menuTransformForPercent(percent: percent)
+    menuViewController.view.alpha = CGFloat(max(0.2, percent))
   }
     
     func menuTransformForPercent(percent: CGFloat) -> CATransform3D {
