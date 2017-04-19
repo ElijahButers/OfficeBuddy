@@ -126,6 +126,10 @@ class ContainerViewController: UIViewController {
     
     let centerVC = (centerViewController as! UINavigationController).viewControllers.first as? CenterViewController
     
+    if let menuButton = centerVC?.menuButton {
+        menuButton.imageView.layer.transform = buttonTransformForPercent(percent)
+    }
+    
   }
     
     func menuTransformForPercent(percent: CGFloat) -> CATransform3D {
