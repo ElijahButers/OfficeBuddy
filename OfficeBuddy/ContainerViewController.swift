@@ -125,6 +125,7 @@ class ContainerViewController: UIViewController {
     menuViewController.view.alpha = CGFloat(max(0.2, percent))
     
     let centerVC = (centerViewController as! UINavigationController).viewControllers.first as? CenterViewController
+    
   }
     
     func menuTransformForPercent(percent: CGFloat) -> CATransform3D {
@@ -138,6 +139,17 @@ class ContainerViewController: UIViewController {
         let translationTransform = CATransform3DMakeTranslation(menuWidth, 0, 0)
         
         return CATransform3DConcat(rotationTransform, translationTransform)
+    }
+    
+    func buttonTransformForPercent(_ percent: CGFloat) -> CATransform3D {
+        
+        var identity = CATransform3DIdentity
+        identity.m34 = -1.0/1000
+        
+        let angle = percent * CGFloat(-M_PI)
+        let rotationTrasform = CATransform3DRotate(identity, angle, 1.0, 1.0, 0.0)
+        
+        return rotationTrasform
     }
   
 }
